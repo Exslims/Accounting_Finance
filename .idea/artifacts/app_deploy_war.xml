@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="app_deploy:war">
+    <output-path>$PROJECT_DIR$/app_deploy/target</output-path>
+    <root id="archive" name="app_deploy-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="app_deploy:war exploded" />
+    </root>
+  </artifact>
+</component>
