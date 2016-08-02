@@ -1,8 +1,7 @@
-package af.home.com;
+package af.home.com.dao.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Reference;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;

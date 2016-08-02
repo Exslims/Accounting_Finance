@@ -1,5 +1,9 @@
 package af.home.com;
 
+import af.home.com.dao.entity.Operation;
+import af.home.com.dao.entity.User;
+import af.home.com.dao.rep.OperationsRepository;
+import af.home.com.dao.rep.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +18,8 @@ import java.util.Date;
 public class RunnerTest {
     @Autowired
     private UserRepository repository;
-    @Autowired OperationsRepository opRepository;
+    @Autowired
+    OperationsRepository opRepository;
 
     @PostConstruct
     public void init(){
