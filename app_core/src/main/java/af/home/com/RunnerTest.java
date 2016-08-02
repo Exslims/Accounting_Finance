@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 /**
  * Exslims
@@ -12,33 +13,37 @@ import javax.annotation.PostConstruct;
 @Component("singleton")
 public class RunnerTest {
     @Autowired
-    private CustomerRepository repository;
+    private UserRepository repository;
+    @Autowired OperationsRepository opRepository;
 
     @PostConstruct
     public void init(){
         repository.deleteAll();
 
         // save a couple of customers
-        repository.save(new Customer("Alice", "Smith"));
-        repository.save(new Customer("Bob", "Smith"));
+        User exslims = new User("Exslims", 24000);
+        User exslims2 = new User("Exslims2", 28000);
+
+        repository.save(exslims);
+        repository.save(exslims2);
+
+        Operation operation = new Operation(exslims,2000,new Date(),"TestTitle","Desc");
+        opRepository.save(operation);
 
         // fetch all customers
-        System.out.println("Customers found with findAll():");
+        System.out.println("Users found with findAll():");
         System.out.println("-------------------------------");
-        for (Customer customer : repository.findAll()) {
-            System.out.println(customer);
+        for (User user : repository.findAll()) {
+            System.out.println(user);
         }
         System.out.println();
 
-        // fetch an individual customer
-        System.out.println("Customer found with findByFirstName('Alice'):");
+        System.out.println("User found with findByNickname('Exslims'):");
         System.out.println("--------------------------------");
-        System.out.println(repository.findByFirstName("Alice"));
+        System.out.println(repository.findByNickname("Exslims"));
 
-        System.out.println("Customers found with findByLastName('Smith'):");
+        System.out.println("Operation found with findByTitle('TestTitle'):");
         System.out.println("--------------------------------");
-        for (Customer customer : repository.findByLastName("Smith")) {
-            System.out.println(customer);
-        }
+        System.out.println(opRepository.findByTitle("TestTitle"));
     }
 }
