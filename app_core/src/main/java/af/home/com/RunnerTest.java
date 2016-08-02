@@ -32,23 +32,26 @@ public class RunnerTest {
         repository.save(exslims);
         repository.save(exslims2);
 
-        Operation operation = new Operation(exslims,2000,new Date(),"TestTitle","Desc");
+        User owner = repository.findByNickname("Exslims");
+
+
+        Operation operation = new Operation(owner,2000,new Date(),"TestTitle","Desc");
         opRepository.save(operation);
 
         // fetch all customers
-        System.out.println("Users found with findAll():");
-        System.out.println("-------------------------------");
-        for (User user : repository.findAll()) {
-            System.out.println(user);
-        }
-        System.out.println();
+//        System.out.println("Users found with findAll():");
+//        System.out.println("-------------------------------");
+//        for (User user : repository.findAll()) {
+//            System.out.println(user);
+//        }
+//        System.out.println();
 
         System.out.println("User found with findByNickname('Exslims'):");
         System.out.println("--------------------------------");
         System.out.println(repository.findByNickname("Exslims"));
 
-        System.out.println("Operation found with findByTitle('TestTitle'):");
+        System.out.println("Operation found with findByUser('User'):");
         System.out.println("--------------------------------");
-        System.out.println(opRepository.findByTitle("TestTitle"));
+        System.out.println(opRepository.findByOwner(owner));
     }
 }

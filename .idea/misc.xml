@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/app_deploy/pom.xml" />
         <option value="$PROJECT_DIR$/app_core/pom.xml" />
+        <option value="$PROJECT_DIR$/app-web/pom.xml" />
       </list>
     </option>
   </component>

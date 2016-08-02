@@ -2,6 +2,7 @@ package af.home.com.dao.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Reference;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -10,12 +11,12 @@ import java.util.Date;
  * Exslims
  * 03.08.2016
  */
-@Document(collection = "operation")
+@Document
 public class Operation {
     @Id
     private String id;
 
-    @Reference
+    @DBRef
     private User owner;
     private double sum;
     private Date creationDate;

@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Exslims
  * 03.08.2016
  */
-@Document(collection = "user")
+@Document
 public class User {
     @Id
     private String id;
