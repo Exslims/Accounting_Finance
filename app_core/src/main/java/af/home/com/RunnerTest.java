@@ -24,27 +24,30 @@ public class RunnerTest {
     @PostConstruct
     public void init(){
         repository.deleteAll();
+        opRepository.deleteAll();
 
         // save a couple of customers
         User exslims = new User("Exslims", 24000);
         User exslims2 = new User("Exslims2", 28000);
 
         repository.save(exslims);
-        repository.save(exslims2);
+//        repository.save(exslims2);
 
         User owner = repository.findByNickname("Exslims");
+        owner.setBalance(10003);
+        repository.save(owner);
 
 
         Operation operation = new Operation(owner,2000,new Date(),"TestTitle","Desc");
         opRepository.save(operation);
 
         // fetch all customers
-//        System.out.println("Users found with findAll():");
-//        System.out.println("-------------------------------");
-//        for (User user : repository.findAll()) {
-//            System.out.println(user);
-//        }
-//        System.out.println();
+        System.out.println("Users found with findAll():");
+        System.out.println("-------------------------------");
+        for (User user : repository.findAll()) {
+            System.out.println(user);
+        }
+        System.out.println();
 
         System.out.println("User found with findByNickname('Exslims'):");
         System.out.println("--------------------------------");

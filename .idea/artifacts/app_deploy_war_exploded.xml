@@ -50,6 +50,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/app_deploy/target/app_deploy-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="app_deploy/web/Web" />
+      <element id="artifact" artifact-name="app-web:war exploded" />
     </root>
   </artifact>
 </component>

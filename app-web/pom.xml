@@ -10,8 +10,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>app-web</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>af.home.com</groupId>
+            <artifactId>app_core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>

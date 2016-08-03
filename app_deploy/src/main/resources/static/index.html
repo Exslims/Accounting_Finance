@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="afApp">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Angular.js Example</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-route.min.js"></script>
+    <script src="afapp.js"></script>
+    <script src="afctrls.js"></script>
+    <script src="afDirs.js"></script>
+    <script src="afFactories.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Hello</h1>
+<div ng-view></div>
 </body>
 </html>
