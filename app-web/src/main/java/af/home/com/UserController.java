@@ -1,23 +1,34 @@
 package af.home.com;
 
 import af.home.com.dao.entity.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import af.home.com.dao.rep.OperationsRepository;
+import af.home.com.dao.rep.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Exslims
  * 04.08.2016
  */
 @RestController
+@RequestMapping("/users")
 public class UserController {
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public User getTestUser(){
-        return new User("Exslims",123000);
-    }
-    @RequestMapping(value = "/testPost", method = RequestMethod.POST)
+    @Autowired
+    private UserRepository repository;
+
+    @RequestMapping(value = "/authentication", method = RequestMethod.POST)
     public User login(@RequestParam(value = "nickname") String nickname){
-        return new User(nickname,213);
+        User user = repository.findByNickname(nickname);
+        if(user == null){
+            user = new User(nickname,0);
+            repository.save(user);
+        }
+        return user;
+    }
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public void updateUser(@RequestBody User user){
+        User loggedUser = repository.findByNickname(user.getNickname());
+        loggedUser.setBalance(user.getBalance());
+        repository.save(loggedUser);
     }
 }

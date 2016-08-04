@@ -2,7 +2,7 @@
     var countryApp = angular.module('afApp', [
         'ngRoute',
         'afControllers',
-        'countryFactory',
+        'afFactory',
         'countryDirective'
     ]);
     countryApp.filter('encodeURI', function(){
@@ -13,6 +13,9 @@
         $routeProvider.when('/', {
             templateUrl: 'login.html',
             controller: 'loginController'
+        }).when('/main', {
+            templateUrl: 'main.html',
+            controller: 'mainController'
         })
             // .when('/:countryId', {
         //    templateUrl: 'country-detail.html',

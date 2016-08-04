@@ -1,28 +1,31 @@
 (function(){
     var afControllers = angular.module('afControllers',[]);
 
-    afControllers.controller('loginController', function($scope,$http){
+    afControllers.controller('loginController', function($scope,loginService, $location){
        $scope.sendData = function(){
            var data = $.param({
                nickname: $scope.nickname
            });
-           var config = {
-               headers : {
-                   'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-               }
-           };
 
-           $http.post('/testPost', data,config)
-               .success(function (data, status, headers, config) {
-                   $scope.PostDataResponse = data;
-               })
-               .error(function (data, status, header, config) {
-                   $scope.ResponseDetails = "Data: " + data +
-                       "<hr />status: " + status +
-                       "<hr />headers: " + header +
-                       "<hr />config: " + config;
+           loginService.executeLogin(data,function(user){
+               loginService.setUser(user);
+               $location.path("/main")
+           })
+               .then(function(response){}, function (error) {
+                   $scope.status = "Cannot login user: " + error.message;
                });
        }
+    });
+    afControllers.controller('mainController', function($scope,loginService, userService){
+        $scope.user = loginService.getUser();
+        $scope.updateUser = function () {
+            userService.updateUser($scope.user)
+                .then(function (response) {
+                $scope.status = "Updated user was successfully completed!"
+            }, function(error){
+                $scope.status = "Cannot update user: " + error.message;
+            });
+        }
     });
 
     //countryControllers.controller('CountryListCtrl', function ($scope, $http, countries) {
