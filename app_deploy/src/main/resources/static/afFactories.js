@@ -18,8 +18,8 @@
             executeLogin: executeLogin
         };
 
-        function executeLogin(nickname, callback){
-            return $http.post(urlBase,nickname,config).success(callback);
+        function executeLogin(nickname){
+            return $http.post(urlBase,nickname,config);
         }
     }
     function userService($http){

@@ -19,11 +19,12 @@
             var data = $.param({
                 nickname: vm.nickname
             });
-            loginService.executeLogin(data,function(user){
+            loginService.executeLogin(data)
+                .then(function(response){
+                    var user = response.data;
                     $cookies.putObject('user',user);
                     $location.path("/main");
-                })
-                .then(function(response){}, function (error) {
+                },function(error){
                     vm.status = "Cannot login user: " + error.message;
                 });
         }
