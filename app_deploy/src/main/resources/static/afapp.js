@@ -12,10 +12,12 @@
     countryApp.config(function ($routeProvider) {
         $routeProvider.when('/', {
             templateUrl: 'login.html',
-            controller: 'loginController'
+            controller: 'loginController',
+            controllerAs: 'vm'
         }).when('/main', {
             templateUrl: 'main.html',
-            controller: 'mainController'
+            controller: 'userController',
+            controllerAs: 'vm'
         })
             // .when('/:countryId', {
         //    templateUrl: 'country-detail.html',

@@ -1,41 +1,47 @@
 (function(){
-    var afControllers = angular.module('afControllers',[]);
+    'use strict';
+    angular
+        .module('afControllers',[])
+        .controller('loginController', loginController)
+        .controller('userController', userController);
 
-    afControllers.controller('loginController', function($scope,loginService, $location){
-       $scope.sendData = function(){
-           var data = $.param({
-               nickname: $scope.nickname
-           });
+    loginController.$inject = ['loginService','$location'];
+    userController.$inject = ['loginService','userService'];
 
-           loginService.executeLogin(data,function(user){
-               loginService.setUser(user);
-               $location.path("/main")
-           })
-               .then(function(response){}, function (error) {
-                   $scope.status = "Cannot login user: " + error.message;
-               });
-       }
-    });
-    afControllers.controller('mainController', function($scope,loginService, userService){
-        $scope.user = loginService.getUser();
-        $scope.updateUser = function () {
-            userService.updateUser($scope.user)
-                .then(function (response) {
-                $scope.status = "Updated user was successfully completed!"
-            }, function(error){
-                $scope.status = "Cannot update user: " + error.message;
+    function loginController(loginService, $location){
+        var vm = this;
+
+        vm.nickname = null;
+        vm.status = null;
+        vm.sendData = sendData;
+
+        function sendData(){
+            var data = $.param({
+                nickname: vm.nickname
             });
+            loginService.executeLogin(data,function(user){
+                    loginService.setUser(user);
+                    $location.path("/main")
+                })
+                .then(function(response){}, function (error) {
+                    vm.status = "Cannot login user: " + error.message;
+                });
         }
-    });
+    }
 
-    //countryControllers.controller('CountryListCtrl', function ($scope, $http, countries) {
-    //    countries.list(function (countries) {
-    //        $scope.countries = countries;
-    //    });
-    //});
-    //countryControllers.controller('CountryDetailCtrl', function ($scope, $routeParams, $http, countries) {
-    //    countries.find($routeParams.countryId, function (country) {
-    //        $scope.country = country;
-    //    })
-    //});
+    function userController(loginService, userService){
+        var vm = this;
+
+        vm.user = loginService.getUser();
+        vm.updateUser = updateUser;
+
+        function updateUser(){
+            userService.updateUser(vm.user)
+                .then(function (response) {
+                    vm.status = "Updated user was successfully completed!"
+                }, function(error){
+                    vm.status = "Cannot update user: " + error.message;
+                });
+        }
+    }
 })();

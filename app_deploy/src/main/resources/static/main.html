@@ -1,8 +1,8 @@
 <ul>
-    <p>{{user.nickname}}</p>
-    <p>{{user.balance}}</p>
-    <p>Balance: <input type="text" ng-model="user.balance" id="balance"></p>
-    <button ng-click="updateUser()">Submit</button>
+    <p>{{vm.user.nickname}}</p>
+    <p>{{vm.user.balance}}</p>
+    <p>Balance: <input type="text" ng-model="vm.user.balance" id="balance"></p>
+    <button ng-click="vm.updateUser()">Submit</button>
     <hr/>
-    {{status}}
+    {{vm.status}}
 </ul>

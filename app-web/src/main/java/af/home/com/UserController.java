@@ -1,7 +1,6 @@
 package af.home.com;
 
 import af.home.com.dao.entity.User;
-import af.home.com.dao.rep.OperationsRepository;
 import af.home.com.dao.rep.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
