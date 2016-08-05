@@ -1,60 +1,51 @@
 (function(){
-    var afFactory = angular.module('afFactory',[]);
-    afFactory.factory('loginService',['$http', function($http){
-        var urlBase = 'users/authentication';
-        var loginFactory = {};
-        var user = null;
+    'use strict';
+    angular.module('afFactory',[])
+        .factory('loginService',loginService)
+        .factory('userService', userService);
 
+    loginService.$inject = ['$http'];
+    userService.$inject = ['$http'];
+
+    function loginService($http){
+        var urlBase = 'users/authentication';
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             }
         };
+        return {
+            executeLogin: executeLogin
+        };
 
-        loginFactory.getUser = function(){
-            return user;
-        };
-        loginFactory.setUser = function (loggedUser) {
-            user = loggedUser;
-        };
-        loginFactory.executeLogin = function(nickname, callback){
+        function executeLogin(nickname, callback){
             return $http.post(urlBase,nickname,config).success(callback);
-        };
-        return loginFactory;
-    }]);
-    afFactory.factory('userService',['$http', function($http){
+        }
+    }
+    function userService($http){
         var urlBase = "users/update";
-        var userService = {};
+        var loggedUser = null;
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=UTF-8;'
             }
         };
-
-        userService.updateUser = function (user) {
-            return $http.post(urlBase,user,config);
+        return {
+            getLoggedUser: getLoggedUser,
+            setLoggedUser: setLoggedUser,
+            updateLoggedUser: updateLoggedUser
         };
-        return userService;
-    }]);
+
+        function getLoggedUser(){
+            return loggedUser;
+        }
+
+        function setLoggedUser(user){
+            loggedUser = user;
+        }
+
+        function updateLoggedUser(user){
+            return $http.post(urlBase,user,config);
+        }
+    }
 })();
-
-
-//angular.module('afFactory',[])
-//    .factory('loginService', function ($http) {
-//        return {
-//            list: function (callback) {
-//                $http({
-//                    method: 'GET',
-//                    url: 'test',
-//                    cache: true
-//                }).success(callback);
-//            },
-//            find: function(id, callback){
-//                $http({
-//                    method: 'GET',
-//                    url: 'country_' + id + ".json",
-//                    cache: true
-//                }).success(callback);
-//            }
-//        };
-//    });

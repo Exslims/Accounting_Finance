@@ -1,9 +1,9 @@
 (function() {
     var countryApp = angular.module('afApp', [
         'ngRoute',
+        'ngCookies',
         'afControllers',
-        'afFactory',
-        'countryDirective'
+        'afFactory'
     ]);
     countryApp.filter('encodeURI', function(){
        return window.encodeURI;

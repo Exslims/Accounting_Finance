@@ -5,10 +5,10 @@
         .controller('loginController', loginController)
         .controller('userController', userController);
 
-    loginController.$inject = ['loginService','$location'];
-    userController.$inject = ['loginService','userService'];
+    loginController.$inject = ['loginService','$location','$cookies'];
+    userController.$inject = ['userService','$cookies'];
 
-    function loginController(loginService, $location){
+    function loginController(loginService, $location,$cookies){
         var vm = this;
 
         vm.nickname = null;
@@ -20,8 +20,8 @@
                 nickname: vm.nickname
             });
             loginService.executeLogin(data,function(user){
-                    loginService.setUser(user);
-                    $location.path("/main")
+                    $cookies.putObject('user',user);
+                    $location.path("/main");
                 })
                 .then(function(response){}, function (error) {
                     vm.status = "Cannot login user: " + error.message;
@@ -29,14 +29,14 @@
         }
     }
 
-    function userController(loginService, userService){
+    function userController(userService,$cookies){
         var vm = this;
 
-        vm.user = loginService.getUser();
+        vm.user = $cookies.getObject('user');
         vm.updateUser = updateUser;
 
         function updateUser(){
-            userService.updateUser(vm.user)
+            userService.updateLoggedUser(vm.user)
                 .then(function (response) {
                     vm.status = "Updated user was successfully completed!"
                 }, function(error){
