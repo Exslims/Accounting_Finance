@@ -5,6 +5,8 @@ import af.home.com.dao.rep.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Exslims
  * 04.08.2016
@@ -30,4 +32,15 @@ public class UserController {
         loggedUser.setBalance(user.getBalance());
         repository.save(loggedUser);
     }
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public List<User> getAllUsers(){
+        return repository.findAll();
+    }
+
+    @RequestMapping(value = "/removeUser", method = RequestMethod.POST)
+    public void removeUser(@RequestBody User user){
+        repository.delete(user);
+    }
+
 }
