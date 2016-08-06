@@ -5,4 +5,7 @@
     <button ng-click="vm.updateUser()">Submit</button>
     <hr/>
     {{vm.status}}
+    <ul>
+        <li ng-repeat = 'user in vm.allUsers'>{{user.nickname}}</li>
+    </ul>
 </ul>

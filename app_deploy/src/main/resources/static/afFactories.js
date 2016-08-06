@@ -23,29 +23,23 @@
         }
     }
     function userService($http){
-        var urlBase = "users/update";
-        var loggedUser = null;
+        var urlUpdate = "users/update";
+        var urlGetAll = "users/getAll";
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=UTF-8;'
             }
         };
         return {
-            getLoggedUser: getLoggedUser,
-            setLoggedUser: setLoggedUser,
-            updateLoggedUser: updateLoggedUser
+            updateLoggedUser: updateLoggedUser,
+            getAllUsers: getAllUsers
         };
 
-        function getLoggedUser(){
-            return loggedUser;
+        function getAllUsers(){
+            return $http.get(urlGetAll,config);
         }
-
-        function setLoggedUser(user){
-            loggedUser = user;
-        }
-
         function updateLoggedUser(user){
-            return $http.post(urlBase,user,config);
+            return $http.post(urlUpdate,user,config);
         }
     }
 })();

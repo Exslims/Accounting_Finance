@@ -34,14 +34,26 @@
         var vm = this;
 
         vm.user = $cookies.getObject('user');
+        vm.allUsers = [];
         vm.updateUser = updateUser;
 
+        getAllUsers();
         function updateUser(){
             userService.updateLoggedUser(vm.user)
                 .then(function (response) {
-                    vm.status = "Updated user was successfully completed!"
+                    vm.status = "Update user was successfully completed!"
                 }, function(error){
                     vm.status = "Cannot update user: " + error.message;
+                });
+        }
+
+        function getAllUsers(){
+            userService.getAllUsers()
+                .then(function (response) {
+                    vm.allUsers = response.data;
+                    vm.status = "Get all users was successfully completed!"
+                }, function(error){
+                    vm.status = "Cannot get all users: " + error.message;
                 });
         }
     }
