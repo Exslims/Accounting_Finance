@@ -35,6 +35,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.0.33" />
         </element>
       </element>
       <element id="directory" name="META-INF">

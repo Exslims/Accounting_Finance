@@ -1,6 +1,8 @@
-<div>
-    <p>Nickname: <input type="text" name="nickname" ng-model="vm.nickname" required /></p>
-    <button ng-click="vm.sendData()">Submit</button>
-    <hr/>
-    {{vm.status}}
+<div class="row">
+    <div class="center-block col-lg-4 col-md-4 login-block">
+        <p>Nickname: <input type="text" name="nickname" ng-model="vm.nickname" required /></p>
+        <button ng-click="vm.sendData()">Submit</button>
+        <hr/>
+        <p>{{vm.status}}</p>
+    </div>
 </div>

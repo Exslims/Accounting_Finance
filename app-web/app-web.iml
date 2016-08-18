@@ -50,5 +50,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.2.6.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.0.33" level="project" />
   </component>
 </module>

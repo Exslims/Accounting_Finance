@@ -7,8 +7,10 @@
     loginService.$inject = ['$http'];
     userService.$inject = ['$http'];
 
+    var API_URL = 'http://localhost:8080';
+
     function loginService($http){
-        var urlBase = 'users/authentication';
+        var urlBase = API_URL + '/users/authentication';
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -23,8 +25,8 @@
         }
     }
     function userService($http){
-        var urlUpdate = "users/update";
-        var urlGetAll = "users/getAll";
+        var urlUpdate = API_URL + '/users/update';
+        var urlGetAll = API_URL + '/users/getAll';
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=UTF-8;'
